@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package grpc_service;
+
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/harikesh-yadav/go-grpc-app";
+
+message Item{
+    int32 id=1;
+    string name=2;
+    string description=3;
+};
+
+message Items{
+    repeated Item Items =1;
+}
+
+service InventoryService{
+    rpc getItemByName(google.protobuf.StringValue) returns (Items);
+    rpc getItemById(google.protobuf.StringValue) returns (Item);
+    rpc addItem(google.protobuf.StringValue) returns(google.protobuf.BoolValue);
+}
+
+
+
